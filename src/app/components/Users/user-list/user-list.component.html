@@ -1,1 +1,37 @@
-<p>user-list works!</p>
+<p>Форма работы с пользователями</p>
+<div class="app__user">
+    <div class="app__user-list">
+        <table>
+            <thead>
+            <tr>
+            <th>#</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Должность</th>
+            <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users; let idx = index">
+            <td>{{ idx + 1 }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.surname }}</td>
+            <td>{{ user.position }}</td>
+            <td>
+                <button
+                class="btn btn-link open"
+                [routerLink]="['/admin', 'post', user.id, 'edit']"
+                >
+                Открыть
+                </button>
+                <a (click)="remove(user.id)">Удалить</a>
+            </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div  class="app__user-form">
+        <app-user-form></app-user-form>
+    </div>
+</div>
+

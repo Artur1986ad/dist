@@ -2,26 +2,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { UserComponent } from './user/user.component';
+import { UserFormComponent } from './user-form/user-form.component';
 import { UserListComponent } from './user-list/user-list.component';
-
-
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
-    UserComponent,
-    UserListComponent
+	UserFormComponent,
+	UserListComponent,
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    HttpClientModule
+	CommonModule,
+	FormsModule,
+	HttpClientModule
   ],
   providers: [
   ],
   exports: [
-    UserListComponent,
-    UserComponent
+	UserListComponent
   ]
 })
 export class UserListModule { }

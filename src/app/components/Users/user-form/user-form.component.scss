@@ -59,3 +59,17 @@
     }
   }
   
+  .card {
+    padding: 1rem;
+    border: #ccc 1px dotted;
+    margin: 0.7rem 0;
+  }
+  
+  .form-control__select {
+    display: block;
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+  }

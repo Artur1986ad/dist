@@ -3,24 +3,26 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './components/main-page/main-page.component';
-import { UserPageComponent } from './components/user-page/user-page.component';
-import { UserListModule } from './components/Users/user-list.module';
-import { UserAddComponent } from './components/user-add/user-add.component';
+import { UserComponent } from './components/Users/user/user.component';
+import { UserListComponent } from './components/Users/user-list/user-list.component';
+import { UserDashboardComponent } from './components/Users/user-dashboard/user-dashboard.component';
+import { UserFormComponent } from './components/Users/user-form/user-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MainPageComponent,
-    UserPageComponent,
-    UserAddComponent,
+	AppComponent,
+	UserComponent,
+	UserListComponent,
+	UserDashboardComponent,
+	UserFormComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    UserListModule,
-    ReactiveFormsModule
+	BrowserModule,
+  AppRoutingModule,
+  ReactiveFormsModule,
+  HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
