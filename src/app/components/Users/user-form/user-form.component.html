@@ -1,6 +1,6 @@
 <div class="container">
     <form class="card" [formGroup]="form" (ngSubmit)="submit()">
-      <h1 class="card__logo">Regestration form</h1>
+      <h1 class="card__logo">User form</h1>
 
       <div class="form-control">
         <label class="form-control__text">Имя</label>
@@ -36,9 +36,9 @@
         <label class="form-control__text">Тип учетной записи</label>
 
         <select class="form-control__select" formControlName="type">
-          <option value="admin">Администратор</option>
-          <option value="operator">Оператор</option>
-          <option value="worker">Рабочий</option>
+          <option value="Администратор">Администратор</option>
+          <option value="Оператор">Оператор</option>
+          <option value="Рабочий">Рабочий</option>
         </select>
       </div>
   
@@ -64,7 +64,7 @@
         </div>
       </div>
   
-      <button class="btn" [disabled]="form.invalid" type="submit">Отправить</button>
+      <button class="btn" [disabled]="form.invalid" type="submit">Добавить</button>
     </form>
   </div>
   

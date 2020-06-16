@@ -8,7 +8,7 @@
             <th>Имя</th>
             <th>Фамилия</th>
             <th>Должность</th>
-            <th>Действия</th>
+            <th>События</th>
             </tr>
             </thead>
             <tbody>
@@ -20,7 +20,7 @@
             <td>
                 <button
                 class="btn btn-link open"
-                [routerLink]="['/admin', 'post', user.id, 'edit']"
+                [routerLink]="['/User', 'user', user.id, 'edit']"
                 >
                 Открыть
                 </button>

@@ -24,6 +24,15 @@ export class UserService {
 		}));
 	}
 
+	public getById(id: string): Observable<User> {
+		return this.http.get<User>(`https://angular-project-62344.firebaseio.com/users.json/users${id}.json`)
+		.pipe(map((user: User) => {
+			return{
+				...user, id,
+			};
+		}));
+	}
+
 	public remove(id: string): Observable<void> {
 		return this.http.delete<void>(`https://angular-project-62344.firebaseio.com/users/${id}.json`);
 	}

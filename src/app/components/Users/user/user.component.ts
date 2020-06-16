@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
+  @Input() public user: User;
+  @Output() public onRemove = new EventEmitter<string>();
+  @Output() public onEditMode = new EventEmitter<User>();
+
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+  }
+
+  public editUser(event: Event): void {
+	event.stopPropagation();
+	this.onEditMode.emit(this.user);
+  }
+
+  public deleteUser(event: Event): void {
+	event.stopPropagation();
+	this.onRemove.emit(this.user.id);
   }
 
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../model/user';
 import { UserService } from '../services/user.service';
+import { UserListComponent } from '../user-list/user-list.component';
 
 @Component({
   selector: 'app-user-form',
@@ -11,7 +12,8 @@ import { UserService } from '../services/user.service';
 export class UserFormComponent implements OnInit {
 
   public form: FormGroup;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+ 			  private userList: UserListComponent) { }
 
   public ngOnInit(): void {
 	this.form = new FormGroup({
@@ -19,7 +21,7 @@ export class UserFormComponent implements OnInit {
 		surname: new FormControl('', [Validators.minLength(3), Validators.required]),
 		phone: new FormControl('', [Validators.minLength(3), Validators.required]),
 		position: new FormGroup({
-			type: new FormControl('admin')
+			type: new FormControl('Администратор')
 			}),
 		address: new FormGroup({
 		country: new FormControl('mg'),
@@ -32,14 +34,14 @@ export class UserFormComponent implements OnInit {
 	const data: any = {...this.form.value};
 	for (const iterator in data) {
 		if (iterator === 'name') {
-		confirm(`Вы успешно зарегестрированы ${data[iterator]}`);
+		confirm(`Пользователь ${data[iterator]} успешно зарегестрирован`);
 		}
 	}
 
 	const user: User = {
 		name: this.form.value.name,
 		surname: this.form.value.surname,
-		position: this.form.value.position,
+		position: this.form.value.position.type,
 		adress: this.form.value.country,
 		phone: this.form.value.phone,
 	};
@@ -47,5 +49,7 @@ export class UserFormComponent implements OnInit {
 	this.userService.create(user).subscribe(() => {
 		this.form.reset();
 	});
+
+		this.userList.getUser();
   }
 }
