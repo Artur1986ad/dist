@@ -1,28 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserComponent } from './components/Users/user/user.component';
-import { UserListComponent } from './components/Users/user-list/user-list.component';
-import { UserDashboardComponent } from './components/Users/user-dashboard/user-dashboard.component';
-import { UserFormComponent } from './components/Users/user-form/user-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
+import { UserModule } from './users/user.module';
 
 @NgModule({
   declarations: [
-	AppComponent,
-	UserComponent,
-	UserListComponent,
-	UserDashboardComponent,
-	UserFormComponent
+	AppComponent
   ],
   imports: [
 	BrowserModule,
   AppRoutingModule,
+  FormsModule,
   ReactiveFormsModule,
-  HttpClientModule
+  SharedModule,
+  UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

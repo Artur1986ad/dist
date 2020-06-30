@@ -1,7 +1,4 @@
-
-
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-
 
 :root {
   --primary-color: #dc3545;
@@ -223,7 +220,7 @@ img {
     }
   }
 
-  .validation {
+  &__validation__error {
     color: var(--primary-color);
   }
 }
@@ -296,3 +293,4 @@ table th {
     }
   }
 }
+
