@@ -23,7 +23,7 @@ export class UserFormComponent implements OnInit {
 		phone: new FormControl('', [Validators.minLength(3), Validators.required]),
 		userpic: new FormControl(''),
 		position: new FormGroup({
-		type: new FormControl('РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ')
+		type: new FormControl('Администратор')
 		}),
 		address: new FormGroup({
 		country: new FormControl('mg'),
@@ -36,7 +36,7 @@ export class UserFormComponent implements OnInit {
 	const data: any = {...this.form.value};
 	for (const iterator in data) {
 		if (iterator === 'name') {
-		confirm(`РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ ${data[iterator]} СѓСЃРїРµС€РЅРѕ Р·Р°СЂРµРіРµСЃС‚СЂРёСЂРѕРІР°РЅ`);
+		confirm(`Пользователь ${data[iterator]} успешно зарегестрирован`);
 		}
 	}
 
@@ -57,13 +57,13 @@ export class UserFormComponent implements OnInit {
 	document.getElementById('thumb').remove();
   }
 
-  public compress(e) {
+  public compress(data) {
 	const that = this;
 	const width = 100;
 	const height = 100;
-	const fileName = e.target.files[0].name;
+	const fileName = data.target.files[0].name;
 	const reader = new FileReader();
-	reader.readAsDataURL(e.target.files[0]);
+	reader.readAsDataURL(data.target.files[0]);
 	reader.onload = event => {
 		const img = new Image();
 		if (typeof event.target.result === 'string') {
@@ -75,7 +75,6 @@ export class UserFormComponent implements OnInit {
 		elem.width = width;
 		elem.height = height;
 		const ctx = elem.getContext('2d');
-		// img.width and img.height will contain the original dimensions
 		ctx.drawImage(img, 0, 0, width, height);
 		ctx.canvas.toBlob((blob) => {
 			const file = new File([blob], fileName, {
@@ -86,15 +85,11 @@ export class UserFormComponent implements OnInit {
 			reader.readAsDataURL(file);
 			reader.onloadend = function () {
 			let base64data = reader.result;
-			// console.log(base64data);
-			// document.getElementById('userpic').value = base64data;
 			that.form.controls.userpic.setValue(base64data);
 			};
 		}, 'image/jpeg', 1);
 		document.getElementById('file').insertAdjacentElement('beforebegin', elem);
-		},
-		reader.onerror = error => console.log(error);
+		};
 	};
   }
 }
-
