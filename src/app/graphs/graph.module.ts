@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
-import { GraphLayoutComponent } from './shared/components/graph-layout/graph-layout.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TasksGraphComponent } from './components/tasks-graph.components'
+import { ChartComponent } from '../ui/components/chart/chart.components';
 
 @NgModule({
-	declarations: [GraphLayoutComponent],
+	declarations: [
+		TasksGraphComponent,
+		ChartComponent
+	],
 	imports: [CommonModule,
 		RouterModule.forChild([
-			{path: '', component: GraphLayoutComponent},
+			{path: '', component: TasksGraphComponent},
 		])],
 	exports: [RouterModule]
 })

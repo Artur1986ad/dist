@@ -18,27 +18,23 @@ export class UserFormComponent implements OnInit {
   public ngOnInit(): void {
 	this.form = new FormGroup({
 		id: new FormControl(''),
-		name: new FormControl('', [Validators.minLength(3), Validators.required]),
-		surname: new FormControl('', [Validators.minLength(3), Validators.required]),
-		phone: new FormControl('', [Validators.minLength(3), Validators.required]),
+		name: new FormControl('', [Validators.minLength(3), Validators.required, Validators.pattern('^[А-Яа-яЁё]+$')]),
+		surname: new FormControl('', [Validators.minLength(3), Validators.required, Validators.pattern('^[А-Яа-яЁё]+$')]),
+		phone: new FormControl('', [Validators.minLength(3), Validators.required, Validators.pattern('^[А-Яа-яЁё]+$')]),
 		userpic: new FormControl(''),
+    street: new FormControl(null,),
 		position: new FormGroup({
 		type: new FormControl('Администратор')
 		}),
 		address: new FormGroup({
 		country: new FormControl('mg'),
 		city: new FormControl(''),
+
 		})
 	});
   }
 
   public submit(): void {
-	const data: any = {...this.form.value};
-	for (const iterator in data) {
-		if (iterator === 'name') {
-		confirm(`Пользователь ${data[iterator]} успешно зарегестрирован`);
-		}
-	}
 
 	const user: User = {
 		id: this.form.value.id,
@@ -52,6 +48,13 @@ export class UserFormComponent implements OnInit {
 
 	this.userService.create(user);
 
+    const data: any = {...this.form.value};
+    for (const iterator in data) {
+      if (iterator === 'name') {
+        confirm(`Пользователь ${data[iterator]} успешно зарегестрирован`);
+      }
+    }
+
 	this.form.reset();
 	document.getElementById('file').nodeValue = '';
 	document.getElementById('thumb').remove();
@@ -59,10 +62,10 @@ export class UserFormComponent implements OnInit {
 
   public compress(data) {
 	const that = this;
-	const width = 100;
-	const height = 100;
-	const fileName = data.target.files[0].name;
-	const reader = new FileReader();
+	const width: number = 100;
+	const height: number = 100;
+	const fileName: string = data.target.files[0].name;
+	const reader: FileReader = new FileReader();
 	reader.readAsDataURL(data.target.files[0]);
 	reader.onload = event => {
 		const img = new Image();
@@ -83,7 +86,7 @@ export class UserFormComponent implements OnInit {
 			});
 			let reader = new FileReader();
 			reader.readAsDataURL(file);
-			reader.onloadend = function () {
+			reader.onloadend = function(): void {
 			let base64data = reader.result;
 			that.form.controls.userpic.setValue(base64data);
 			};

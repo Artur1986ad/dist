@@ -28,14 +28,15 @@ export class UserLayoutComponent implements OnInit {
   }
 
   public edit(id: string): void {
-	this.usersService.loadUserForEdit(id);
+	/*this.usersService.loadUserForEdit(id);*/
   }
   public remove(id: string): void {
 	this.usersService.remove(id);
   }
 
-  public showEdit(): void {
-	this.visableUser = false;
+  public showEdit(id): void {
+  this.visableUser = false;
+  this.usersService.loadUserForEdit(id);
   }
 
   public addUser(event: Event): void {

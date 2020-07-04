@@ -21,7 +21,7 @@ import { AuthGuard } from '../shared/services/auth.guard';
 				{path: 'login', component: LoginPageComponent},
 				{path: 'dashboard', component: DashboardPageComponent , canActivate: [AuthGuard]},
 				{path: 'user', loadChildren: () => import('../users/user.module').then(module => module.UserModule), canActivate: [AuthGuard]},
-				{path: 'task', loadChildren: () => import('../task/task.module').then(module => module.TaskModule), canActivate: [AuthGuard]},
+				{path: 'task', loadChildren: () => import('../tasks/task.module').then(module => module.TaskModule), canActivate: [AuthGuard]},
 				{path: 'graph', loadChildren: () => import('../graphs/graph.module').then(module => module.GraphModule), canActivate: [AuthGuard]},
 			]
 		}

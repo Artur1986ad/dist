@@ -13,25 +13,7 @@ export class EditUserComponent implements OnInit {
   public form: FormGroup;
 
   constructor(private userService: UserService) {
-	this.userService.userForEdit().subscribe(data => {
-		if (data) {
-		data.adress = '';
-		this.form.setValue({
 
-			id: data.id || '',
-			name: data.name || '',
-			surname: data.surname || '',
-			phone: data.phone || '',
-			userpic: data.userpic || '',
-			position: {type: data.position || ''},
-			address: {
-			country: '' || '',
-			city: '' || ''
-			},
-
-		});
-		}
-	});
   }
 
   public ngOnInit(): void {
@@ -41,14 +23,37 @@ export class EditUserComponent implements OnInit {
 		surname: new FormControl('', [Validators.minLength(3), Validators.required]),
 		phone: new FormControl('', [Validators.minLength(3), Validators.required]),
 		userpic: new FormControl(''),
+
 		position: new FormGroup({
 		type: new FormControl('')
 		}),
 		address: new FormGroup({
-		country: new FormControl('mn'),
-		city: new FormControl(''),
-		})
+		  country: new FormControl('mn'),
+		  city: new FormControl(''),
+
+		}),
+    street: new FormControl(''),
 	});
+
+    this.userService.userForEdit().subscribe(data => {
+      if (data) {
+        data.adress = '';
+        this.form.setValue({
+          id: data.id || '',
+          name: data.name || '',
+          surname: data.surname || '',
+          phone: data.phone || '',
+          userpic: data.userpic || '',
+          position: {type: data.position || ''},
+          address: {
+            country: '' || '',
+            city: '' || '',
+
+          }, street: '' || ''
+
+        });
+      }
+    });
   }
 
   public submit(): void {

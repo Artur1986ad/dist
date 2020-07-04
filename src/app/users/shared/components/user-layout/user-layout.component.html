@@ -20,25 +20,20 @@
             <th>События</th>
             </tr>
             </thead>
-             <tbody>
-          <tr *ngFor="let user of users | searchUser:search; let idx = index">
-            <td>{{ idx + 1 }}</td>
-            <td><img src="{{ user.userpic }}" class="user__image"></td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.surname }}</td>
-            <td>{{ user.position }}</td>
-            <td>
-                <button
-                class="btn btn-link open"
-                [routerLink]="['/admin','user', user.id, 'edit']"
-                (click)="showEdit()"
-                >
-                Открыть
-                </button>
-                <a (click)="edit(user.id)">Редактировать</a>
-                <a (click)="remove(user.id)">Удалить</a>
-            </td>
-            </tr>
+            <tbody>
+                <tr *ngFor="let user of users | searchUser:search; let idx = index">
+                    <td>{{ idx + 1 }}</td>
+                    <td><img src="{{ user.userpic }}" class="user__image"></td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.surname }}</td>
+                    <td>{{ user.position }}</td>
+                    <td>
+                        <a class="btn btn-link open"
+                        [routerLink]="['/admin','user', user.id, 'edit']"
+                        (click)="showEdit(user.id)"> Открыть</a>
+                        <a (click)="remove(user.id)">Удалить</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
