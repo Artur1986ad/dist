@@ -7,21 +7,23 @@ import { RouterModule } from '@angular/router';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { MapComponent } from './components/map/map.component';
-import {AgmCoreModule} from '@agm/core';
+import { AgmCoreModule } from '@agm/core';
+import { SearchUser } from './pipes/searchTask.pipe';
 
 @NgModule({
 	declarations: [TaskLayoutComponent,
-	EditTaskComponent,
-	TaskFormComponent,
-	MapComponent,
+	  EditTaskComponent,
+	  TaskFormComponent,
+	  MapComponent,
+	  SearchUser
 ],
-  imports: [CommonModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    RouterModule.forChild([
-      {path: '', component: TaskLayoutComponent, children: [{path: ':id/edit', component: EditTaskComponent}]},
-    ]), AgmCoreModule],
+ 	imports: [CommonModule,
+  	  FormsModule,
+	  HttpClientModule,
+	  ReactiveFormsModule,
+	  RouterModule.forChild([
+		{path: '', component: TaskLayoutComponent, children: [{path: ':id/edit', component: EditTaskComponent}]},
+	  ]), AgmCoreModule],
 	exports: [RouterModule],
 
 })

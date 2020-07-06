@@ -7,22 +7,25 @@ import { SharedModule } from './shared/shared.module';
 import { UserModule } from './users/user.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
+import { TaskModule } from './tasks/task.module';
+
 
 @NgModule({
   declarations: [
-	AppComponent
+	  AppComponent
   ],
   imports: [
-	BrowserModule,
-	AgmCoreModule.forRoot({
-	apiKey: 'AIzaSyB6Z3HlDiDGPL2IptxU7iRygR8l498aYU4'
+	  BrowserModule,
+	  AgmCoreModule.forRoot({
+	    apiKey: 'AIzaSyB6Z3HlDiDGPL2IptxU7iRygR8l498aYU4'
   }),
-  AppRoutingModule,
-  FormsModule,
-  ReactiveFormsModule,
-  SharedModule,
-  UserModule,
-  BrowserAnimationsModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    UserModule,
+    TaskModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

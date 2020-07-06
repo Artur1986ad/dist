@@ -56,8 +56,7 @@ export class UserService {
   }
 
   public remove(id: string): Subscription {
-	return this.http.delete<void>(`https://angular-project-62344.firebaseio.com/users/${id}.json`).subscribe(
-		() => {
+	return this.http.delete<void>(`https://angular-project-62344.firebaseio.com/users/${id}.json`).subscribe(() => {
 		this.reload();
 		}
 	);

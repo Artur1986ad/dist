@@ -4,9 +4,12 @@
       <div class="form-control">
         <label class="form-control__text">Заказчик</label>
         <input class="form-control__input" type="text" placeholder="ФИО заказчика ..." formControlName="customer">
-        <div class="validation" *ngIf="form.get('customer').invalid && form.get('customer').touched">
-          <div class="validation__small-text" *ngIf="form.get('customer').errors.required">
+        <div class="validation" *ngIf="form.controls['customer'].invalid && form.controls['customer'].touched">
+          <div class="validation__small-text" *ngIf="form.controls['customer'].errors.required">
             Поле заказчика не может быть пустым
+          </div>
+          <div class="validation__small-text" *ngIf="form.controls['customer'].errors.pattern">
+            Имя заказчика должно состоять из русских букв
           </div>
         </div>
       </div>
@@ -14,9 +17,12 @@
       <div class="form-control">
         <label class="form-control__text">Название задания</label>
         <input class="form-control__input" type="text" placeholder="Название задания ..." formControlName="name">
-        <div class="validation" *ngIf="form.get('name').invalid && form.get('name').touched">
-          <div class="validation__small-text" *ngIf="form.get('name').errors.required">
+        <div class="validation" *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+          <div class="validation__small-text" *ngIf="form.controls['name'].errors.required">
             Поле название задания не может быть пустым
+          </div>
+          <div class="validation__small-text" *ngIf="form.controls['name'].errors.pattern">
+            Название задания должно состоять из русских букв
           </div>
         </div>
       </div>
@@ -24,9 +30,12 @@
       <div class="form-control">
         <label class="form-control__text">Телефон</label>
         <input class="form-control__input" type="text" placeholder="Телефон..." formControlName="phone">
-        <div class="validation" *ngIf="form.get('phone').invalid && form.get('phone').touched">
-          <div class="validation__small-text" *ngIf="form.get('phone').errors.required">
+        <div class="validation" *ngIf="form.controls['phone'].invalid && form.controls['phone'].touched">
+          <div class="validation__small-text" *ngIf="form.controls['phone'].errors.required">
             Поле телефон не может быть пустым
+          </div>
+          <div class="validation__small-text" *ngIf="form.controls['phone'].errors.pattern">
+            Не корректно введены данные. Формат: (+375(29/44/33/25)333-22-22)
           </div>
         </div>
       </div>
@@ -34,8 +43,8 @@
       <div class="form-control">
         <label class="form-control__text">Адрес заказчика</label>
         <input class="form-control__input" type="text" placeholder="Адрес заказчика..." formControlName="adress">
-        <div class="validation" *ngIf="form.get('adress').invalid && form.get('adress').touched">
-          <div class="validation__small-text" *ngIf="form.get('adress').errors.required">
+        <div class="validation" *ngIf="form.controls['adress'].invalid && form.controls['adress'].touched">
+          <div class="validation__small-text" *ngIf="form.controls['adress'].errors.required">
             Поле адрес заказчика не может быть пустым
           </div>
         </div>
@@ -44,12 +53,23 @@
       <div class="form-control">
         <label class="form-control__text">Дата принятие заявки</label>
         <input class="form-control__input" type="date" formControlName="dateStart">
+        <div class="validation" *ngIf="form.controls['dateStart'].invalid">
+          <div class="validation__small-text" *ngIf="form.controls['dateStart'].errors.required">
+            Не выбрана дата приема заявки
+          </div>
+        </div>
       </div>
 
       <div class="form-control">
+       <label class="form-control__text">Исполнитель</label>
        <select  class="form-control" formControlName="executor">
           <option id="markerType" [ngValue]="param.name" *ngFor="let param of perem">{{param.name}}</option>
        </select>
+       <div class="validation" *ngIf="form.controls['executor'].invalid">
+          <div class="validation__small-text" *ngIf="form.controls['executor'].errors.required">
+            Не выбран исполнитель
+          </div>
+        </div>
       </div>
 
       <div class="form-control">

@@ -1,1 +1,39 @@
+.user-form__image{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: solid 1px rgb(65, 63, 63);
+}
 
+.card__logo{
+  text-align: center;
+}
+
+.user-form{
+  display: flex;
+
+  &__image{
+    margin-right: 10px;
+  }
+  &__photo{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+}
+
+.btn{
+  margin-top: 10px;
+}
+
+.btn_submit{
+  text-align: end;
+}
+
+.user-form__info{
+  width: 65%;
+}
+
+.file-load{
+  display: none;
+}

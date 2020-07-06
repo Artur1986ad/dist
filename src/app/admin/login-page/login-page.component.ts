@@ -10,35 +10,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  private minLengthPasa: number = 6;
+  private minLengthPassword: number = 6;
   public form: FormGroup;
 
   constructor(private authService: AuthService,
-  private router: Router) { }
+	  private router: Router) { }
 
   public get auth(): AuthService {
-	return this.authService;
-}
+  	return this.authService;
+  }
 
   public ngOnInit(): void {
   	this.form = new FormGroup({
   	  email: new FormControl(null, [Validators.required, Validators.email]),
-		password: new FormControl(null, [Validators.required, Validators.minLength(this.minLengthPasa)]),
+		  password: new FormControl(null, [Validators.required, Validators.minLength(this.minLengthPassword)]),
   });
   }
 
   public submit(): void {
-	if (this.form.invalid) {
-		return;
+	  if (this.form.invalid) {
+		  return;
   }
+
   const user: User = {
-  email: this.form.value.email,
-  password: this.form.value.password
+  	email: this.form.value.email,
+	  password: this.form.value.password
   };
+
   this.authService.login(user).subscribe((param: any) => {
-	console.log(param);
-	this.form.reset();
-	this.router.navigate(['/admin', 'dashboard']);
-  });
+	  this.form.reset();
+	  this.router.navigate(['/admin', 'dashboard']);
+	});
   }
 }

@@ -11,7 +11,7 @@ import { SearchUser } from './pipes/search.pipe';
 @NgModule({
 	declarations: [UserLayoutComponent,
 		UserFormComponent,
-		EditUserComponent,
+	    EditUserComponent,
 		SearchUser],
 	imports: [CommonModule,
 		FormsModule,

@@ -8,7 +8,6 @@ import { AuthResponse } from '../authResponse';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-	public error$: Subject<string> = new Subject<string>();
 
    public get token(): string {
 	   const expDate: Date = new Date(localStorage.getItem('token-exp'));
@@ -18,12 +17,14 @@ export class AuthService {
 	   }
 		return localStorage.getItem('token');
 	}
+   private timeSave: number = 1000;
+   public error$: Subject<string> = new Subject<string>();
 	constructor(private http: HttpClient) {
 	}
 
 	private setToken(response: AuthResponse | null): void {
 		if (response) {
-		const expDate: Date = new Date(new Date().getTime() + + response.expiresIn * 1000);
+		const expDate: Date = new Date(new Date().getTime() + + response.expiresIn * this.timeSave);
 		localStorage.setItem('token', response.idToken);
 		localStorage.setItem('token-exp', expDate.toString());
 		} else {
@@ -33,8 +34,7 @@ export class AuthService {
 	}
 
 	private handleError(error: HttpErrorResponse): Observable<Error> {
-		const {message} = error.error.error;
-
+		const {message}: HttpErrorResponse = error.error.error;
 		switch (message) {
 			case 'INVALID_EMAIL':
 				this.error$.next('Неверный email');

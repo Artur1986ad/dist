@@ -9,8 +9,7 @@ export class SearchUser implements PipeTransform {
 		if (!_search.trim()) {
 			return _users;
 		}
-		return _users.filter(user => {
-            debugger
+		return _users.filter((user: User) => {
 			return user.surname.toLowerCase().includes(_search.toLowerCase());
 		});
 	}

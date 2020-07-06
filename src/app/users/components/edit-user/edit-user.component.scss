@@ -1,10 +1,27 @@
-.flex{
+.card__logo{
+  text-align: center;
+}
+.user-form{
   display: flex;
+
+  &__image{
+    margin-right: 10px;
+  }
+  &__photo{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
 }
-.flex .col_img{
-  margin-right: 10px;
+
+.user-form__image{
+  width: 35%;
 }
-.photoUser{
-  width: 150px;
-  height: 150px;
+
+.user-form__info{
+  width: 65%;
+}
+
+.file-load{
+  display: none;
 }

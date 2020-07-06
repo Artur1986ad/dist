@@ -12,7 +12,7 @@ export class MapComponent {
 
   public latitude: number = 0;
   public longitude: number = 0;
-  public apiKey: string = 'AIzaSyB6Z3HlDiDGPL2IptxU7iRygR8l498aYU4';
+  public apiKey = 'AIzaSyB6Z3HlDiDGPL2IptxU7iRygR8l498aYU4';
 
    constructor(private http: HttpClient) {
    }

@@ -3,8 +3,8 @@
         <input class="input-serch" type="text" placeholder="Поиск..." [(ngModel)]="search">
     </div>
     <div class="app__button">
-     <!--   <button class="btn btn-add"
-        (click)="addUser($event)">Добавить задачу</button>-->
+        <button class="btn btn-add"
+        (click)="addTask()">Добавить задачу</button>
     </div>
 </div>
 <div class="app__user">
@@ -21,7 +21,7 @@
                 <th>События</th>
                 </tr>
             </thead>
-                <tbody *ngFor="let task of tasks; let idx = index;">
+                <tbody *ngFor="let task of tasks | searchTask:search; let idx = index;">
                     <tr>
                         <td>{{ idx + 1 }}</td>
                         <td>{{ task.customer }}</td>
@@ -42,21 +42,12 @@
                 </tbody>
         </table>
     </div>
-        <div  class="app__user-form">
-          <div *ngIf="visableTask; then taskForm else editTaskForm"></div>
-          <ng-template #taskForm><app-task-form></app-task-form></ng-template>
-          <ng-template #editTaskForm><app-edit-task [task]="choosenTask" (onUpDate)="OnUpdate($event)"></app-edit-task>
+    <div  class="app__user-form">
+        <div *ngIf="visableTask; then taskForm else editTaskForm"></div>
+        <ng-template #taskForm><app-task-form></app-task-form></ng-template>
+        <ng-template #editTaskForm><app-edit-task [task]="choosenTask"
+             (onUpDate)="OnUpdate($event)"></app-edit-task>
             <app-map [address]="choosenAddress"></app-map>
-          </ng-template>
-            <!--<app-task-form></app-task-form>-->
-        </div>
-   <!-- <div  class="app__user-form">
-
-        <div *ngIf="visableTask">
-            <app-task-form>
-            </app-task-form></div>
-
-        <div *ngIf="!visableTask">
-                <app-edit-task [task]="choosenTask" ]></app-edit-task></div>
-    </div>-->
+        </ng-template>
+    </div>
 </div>
